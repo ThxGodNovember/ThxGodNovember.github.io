@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>springmvc源码学习(二)--dispatcherServlet | ThxGodNovember</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x6211;&amp;#x4EEC;&amp;#x7EE7;&amp;#x7EED;&amp;#x8BB2;&amp;#x5230;onRefresh()&amp;#x65B9;&amp;#x6CD5; 123456789101112131415161718192021222324252627282930/** * This implementation calls {@link #initStrategies}. */@Overrideprote">
+<meta name="keywords" content="springmvc,spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springmvc源码学习(二)--dispatcherServlet">
+<meta property="og:url" content="http://yoursite.com/2018/06/08/springmvc源码学习--dispatcherServlet(二)/index.html">
+<meta property="og:site_name" content="ThxGodNovember">
+<meta property="og:description" content="&amp;#x6211;&amp;#x4EEC;&amp;#x7EE7;&amp;#x7EED;&amp;#x8BB2;&amp;#x5230;onRefresh()&amp;#x65B9;&amp;#x6CD5; 123456789101112131415161718192021222324252627282930/** * This implementation calls {@link #initStrategies}. */@Overrideprote">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-09T01:43:08.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springmvc源码学习(二)--dispatcherServlet">
+<meta name="twitter:description" content="&amp;#x6211;&amp;#x4EEC;&amp;#x7EE7;&amp;#x7EED;&amp;#x8BB2;&amp;#x5230;onRefresh()&amp;#x65B9;&amp;#x6CD5; 123456789101112131415161718192021222324252627282930/** * This implementation calls {@link #initStrategies}. */@Overrideprote">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "Czt",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>ThxGodNovember</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">Czt</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+    
+
+    
+
+    
+    <a href="/about" class="item" >
+        <i class=" icon"></i>
+        关于
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-springmvc源码学习--dispatcherServlet(二)" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    springmvc源码学习(二)--dispatcherServlet
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>&#x6211;&#x4EEC;&#x7EE7;&#x7EED;&#x8BB2;&#x5230;onRefresh()&#x65B9;&#x6CD5;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * This implementation calls {@link #initStrategies}.</span><br><span class="line"> */</span><br><span class="line">@Override</span><br><span class="line">protected void onRefresh(ApplicationContext context) {</span><br><span class="line">	initStrategies(context);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Initialize the strategy objects that this servlet uses.</span><br><span class="line"> * &lt;p&gt;May be overridden in subclasses in order to initialize further strategy objects.</span><br><span class="line"> */</span><br><span class="line">protected void initStrategies(ApplicationContext context) {</span><br><span class="line">    //&#x521D;&#x59CB;&#x5316;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5904;&#x7406;&#x5668;,&#x5206;&#x522B;&#x6709;commonMultiResolver&#x548C;standardMultiResolver&#xFF0C;&#x524D;&#x8005;&#x662F;&#x7528;&#x7684;common-fileupload&#x4F9D;&#x8D56;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5F15;&#x5165;&#x5176;&#x4ED6;jar&#x5305;&#xFF0C;&#x540E;&#x8005;&#x662F;servlet.3.0&#x624D;&#x6709;&#xFF0C;&#x65E0;&#x987B;&#x5F15;&#x5165;jar&#x5305;&#xFF0C;&#x4F46;tomcat&#x5FC5;&#x987B;7&#x4EE5;&#x4E0A;</span><br><span class="line">	initMultipartResolver(context);</span><br><span class="line">       //&#x521D;&#x59CB;&#x5316;&#x56FD;&#x9645;&#x5316;&#x5904;&#x7406;&#x5668;</span><br><span class="line">	initLocaleResolver(context);</span><br><span class="line">       //&#x521D;&#x59CB;&#x5316;&#x52A8;&#x6001;&#x6837;&#x5F0F;&#x5904;&#x7406;&#x5668;  &#x5982;&#xFF1A;jsp&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&lt;spring:theme code=&apos;helloworld&apos;/&gt;&quot; /&gt;</span><br><span class="line">	initThemeResolver(context);</span><br><span class="line"></span><br><span class="line">    //&#x521D;&#x59CB;&#x5316;&#x8DEF;&#x5F84;&#x9009;&#x62E9;&#x5904;&#x7406;&#x7C7B;</span><br><span class="line">	initHandlerMappings(context);</span><br><span class="line">	//&#x521D;&#x59CB;&#x5316;&#x63A7;&#x5236;&#x5668;&#x5904;&#x7406;&#x7C7B;</span><br><span class="line">	initHandlerAdapters(context);</span><br><span class="line">	//&#x521D;&#x59CB;&#x5316;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7C7B;</span><br><span class="line">	initHandlerExceptionResolvers(context);</span><br><span class="line">	initRequestToViewNameTranslator(context);</span><br><span class="line">	initViewResolvers(context);</span><br><span class="line">	initFlashMapManager(context);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-08T01:03:05.000Z" itemprop="datePublished">2018-06-08</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/springmvc-spring/">springmvc,spring</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/08/springmvc_sources学习/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    springmvc 源码学习(一)
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a class="ui tiny button disabled">下一篇<i class="angle right icon"></i></a>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2018 <a href="/">Czt</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
